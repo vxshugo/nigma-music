@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentSong } from "../../redux/audioPlayer";
 import Like from "../Like";
@@ -11,13 +11,28 @@ import PlaylistMenu from "../PlaylistMenu";
 import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
 import {Link} from "react-router-dom";
+import axiosInstance from "../../redux/axiosInstance";
 momentDurationFormatSetup(moment);
 
 
 const Song = ({ song, playlist, handleRemoveSong }) => {
 	const [menu, setMenu] = useState(false);
+	const [artist, setArtist] = useState({})
 	const { currentSong } = useSelector((state) => state.audioPlayer);
 	const dispatch = useDispatch();
+
+	const getArtist = async () => {
+		try {
+			const url = process.env.REACT_APP_API_URL + `/artist/${song.artist}`
+			const res = await axiosInstance.get(url)
+			setArtist(res.data)
+		}catch (e) {
+			console.log(e)
+		}
+	}
+	useEffect(() => {
+		getArtist()
+	},[])
 
 	const handleChange = () => {
 		if (currentSong && currentSong.action === "play") {
@@ -48,12 +63,12 @@ const Song = ({ song, playlist, handleRemoveSong }) => {
 					)}
 				</IconButton>
 				<img src={song.img} alt="song_img" />
-				<Link to={`/song/`+currentSong.song._id}>
+				<Link to={`/song/${currentSong.song._id}/${artist?.data?._id}`}>
 					<p>{song.name}</p>
 				</Link>
 			</div>
 			<div className={styles.center}>
-				<p>{song.artist}</p>
+				<p>{artist?.data?.name}</p>
 			</div>
 			<div className={styles.subright}>
 				<p>{song.listens}</p>

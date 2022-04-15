@@ -3,7 +3,6 @@
     padding: 0;
     margin: 0;
   }
-  margin-left: 20px;
   h1{
     font-size: 10rem;
     margin-bottom: 10px;
@@ -11,15 +10,16 @@
   h2{
     font-size: 5rem;
   }
-  .track_info{
-    h3{
-      font-size: 5rem;
-      margin-bottom: 5px;
-    }
-    p{
-      font-size: 2.5rem;
-      font-weight: 300;
-      margin-bottom: 40px;
+  .headContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(49, 121, 74, 0.1);
+
+    padding: 0 20px;
+
+    img{
+      width: 80%;
     }
   }
   span{

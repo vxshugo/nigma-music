@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteSong } from "../../../redux/songsSlice/apiCalls";
@@ -16,16 +16,35 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./styles.module.scss";
+import axiosInstance from "../../../redux/axiosInstance";
 
 const SongTable = ({ songs }) => {
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(true);
+	const [artist, setArtist] = useState({})
 
 	setTimeout(() => setLoading(false), 1000);
 
 	const handleDelete = (id) => {
 		deleteSong(id, dispatch);
 	};
+
+	const test = songs.map((song,index) => {
+		return song.artist
+	})
+
+	useEffect(()=> {
+		const getArtist = async (id) => {
+			try {
+				const url = process.env.REACT_APP_API_URL + "/artist/" + id;
+				const res = await axiosInstance.get(url)
+				setArtist(res.data)
+			}catch (e){
+				console.log(e)
+			}
+		}
+		getArtist(test)
+	},[])
 
 	return (
 		<TableContainer component={Paper} className={styles.table_container}>
@@ -55,28 +74,32 @@ const SongTable = ({ songs }) => {
 				{!loading && (
 					<TableBody>
 						{songs.length !== 0 &&
-							songs.map((song, index) => (
-								<TableRow key={song._id}>
-									<TableCell align="center">
-										<img className={styles.song_img} src={song.img} alt="" />
-									</TableCell>
-									<TableCell align="center">{song.name}</TableCell>
-									<TableCell align="center">{song.artist}</TableCell>
-									<TableCell align="center">
-										<Link to={`/songs/${song._id}`}>
-											<IconButton className={styles.edit_btn}>
-												<EditIcon />
-											</IconButton>
-										</Link>
-										<IconButton
-											className={styles.delete_btn}
-											onClick={() => handleDelete(song._id)}
-										>
-											<DeleteIcon />
-										</IconButton>
-									</TableCell>
-								</TableRow>
-							))}
+							songs.map((song, index) => {
+								return (
+									(
+										<TableRow key={song._id}>
+											<TableCell align="center">
+												<img className={styles.song_img} src={song.img} alt="" />
+											</TableCell>
+											<TableCell align="center">{song.name}</TableCell>
+											<TableCell align="center">{artist?.data?.name}</TableCell>
+											<TableCell align="center">
+												<Link to={`/songs/${song._id}`}>
+													<IconButton className={styles.edit_btn}>
+														<EditIcon />
+													</IconButton>
+												</Link>
+												<IconButton
+													className={styles.delete_btn}
+													onClick={() => handleDelete(song._id)}
+												>
+													<DeleteIcon />
+												</IconButton>
+											</TableCell>
+										</TableRow>
+									)
+								)
+							})}
 						{songs.length === 0 && (
 							<TableRow>
 								<TableCell align="center"></TableCell>

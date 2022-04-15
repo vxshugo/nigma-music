@@ -79,7 +79,7 @@ const App = () => {
 				<PrivateRoute
 					exact
 					user={user}
-					path="/song/:id"
+					path="/song/:id/:id"
 					component={Song}
 				/>
 				<PrivateRoute exact user={user} path="/me" component={Profile} />
