@@ -18,6 +18,7 @@ const AudioPlayer = () => {
 	const [duration, setDuration] = useState(0);
 	const { currentSong } = useSelector((state) => state.audioPlayer);
 	const dispatch = useDispatch();
+	const [artist, setArtist] = useState({})
 
 	const data = {
 		listens: currentSong.song.listens + 1
@@ -30,6 +31,16 @@ const AudioPlayer = () => {
 			const url = process.env.REACT_APP_API_URL + `/songs/cursong/${currentSong.song._id}`;
 			const res = await axiosInstance.put(url, data)
 		}catch (e) {
+			console.log(e)
+		}
+	}
+
+	const getArtist = async () => {
+		try {
+			const url = process.env.REACT_APP_API_URL + "/artist/" + currentSong.song.artist
+			const res = await axiosInstance.get(url)
+			setArtist(res.data)
+		}catch (e){
 			console.log(e)
 		}
 	}
@@ -67,6 +78,7 @@ const AudioPlayer = () => {
 
 	useEffect(() => {
 		currentSong.action === "play" && startTimer();
+		getArtist()
 	});
 
 	const onScrub = (value) => {
@@ -92,7 +104,7 @@ const AudioPlayer = () => {
 				<img src={currentSong.song.img} alt="song_img" />
 				<div className={styles.song_info}>
 					<p className={styles.song_name}>{currentSong.song.name}</p>
-					<p className={styles.song_artist}>{currentSong.song.artist}</p>
+					<p className={styles.song_artist}>{artist.data?.name}</p>
 				</div>
 			</div>
 			<div className={styles.center}>

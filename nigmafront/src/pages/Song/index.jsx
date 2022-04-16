@@ -37,24 +37,31 @@ const Song = () => {
                 console.log(e)
             }
         }
-        getArtist()
+        getArtist();
     },[])
 
     return(
         <div className={styles.container}>
             <div className={styles.headContainer}>
-                <div>
+                <div className={styles.leftBlock}>
                     <img src={song.data?.img} alt=""/>
                 </div>
-                <div>
-                    <p>Трек</p>
+                <div className={styles.right_block}>
+                    <p className={styles.track}>Трек</p>
                     <h1>{song.data?.name}</h1>
-                    <img src={artist?.data?.img} alt=""/><h3>{artist?.data?.name}</h3>
+                    <div className={styles.artist_block}>
+                        <img src={artist?.data?.img} alt=""/>
+                        <h3>{artist?.data?.name}</h3>
+                    </div>
                     <p>Количество прослушиваний {song.data?.listens} <Like songId={id} /></p>
                 </div>
             </div>
-            <h2 style={{marginBottom: 10}}>Текст</h2>
-            <span>{song.data?.text}</span>
+            <div className={styles.bottomContainer}>
+                <h2 style={{marginBottom: 10}}>Текст</h2>
+                <div className={styles.textblock}>
+                    <span>{song.data?.text}</span>
+                </div>
+            </div>
         </div>
     )
 }
