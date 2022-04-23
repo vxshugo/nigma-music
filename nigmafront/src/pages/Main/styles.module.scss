@@ -1,6 +1,9 @@
 .container {
 	overflow-x: hidden;
 
+	.fontSize{
+		font-size: 24px;
+	}
 	.navbar_container {
 		width: calc(100vw - 20rem);
 		height: 8rem;

@@ -6,6 +6,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import CopyrightIcon from "@mui/icons-material/Copyright";
 import logo from "../../images/toplogo226.svg";
 import styles from "./styles.module.scss";
+import Modal from "../../components/Popup";
+import {useState} from "react";
 
 const navLinks = [
 	{ name: "Premium", link: "#" },
@@ -39,8 +41,12 @@ const footerLinks = [
 const footerIcons = [<InstagramIcon />, <TwitterIcon />, <FacebookIcon />];
 
 const Main = () => {
+	const [modalActive, setModalActive] = useState(true)
+
+
 	return (
 		<div className={styles.container}>
+			<Modal active={modalActive} setActive={setModalActive}/>
 			<nav className={styles.navbar_container}>
 				<Link to="/" className={styles.nav_logo}>
 					<img src={logo} alt="logo" />
@@ -59,7 +65,7 @@ const Main = () => {
 					<p>Millions of songs and podcasts. No credit card needed.</p>
 					<Link to="/signup">
 						<Button
-							label="GET NIGMA FREE"
+							label="GET NIGMA"
 							style={{ color: "#fff", width: "18rem", fontSize: "1.4rem" }}
 						/>
 					</Link>
