@@ -29,7 +29,7 @@ const SongTable = ({ songs }) => {
 		deleteSong(id, dispatch);
 	};
 
-	const test = songs.map((song,index) => {
+	const artistname = songs.map((song,index) => {
 		return song.artist
 	})
 
@@ -43,7 +43,7 @@ const SongTable = ({ songs }) => {
 				console.log(e)
 			}
 		}
-		getArtist(test)
+		getArtist(artistname)
 	},[])
 
 	return (

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
 import * as Font from 'expo-font';
-
 import {AppNavigator} from "./Navigation"
 import ThemeManager from './Themes';
 import { Fonts } from './Constants';
+import { ToastProvider } from 'react-native-styled-toast'
 
 const App = ({ params }) => {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
@@ -20,9 +20,11 @@ const App = ({ params }) => {
     });
 
   return assetsLoaded ? (
-    <ThemeManager>
-      <AppNavigator />
-    </ThemeManager>
+      <ThemeManager>
+        <ToastProvider>
+          <AppNavigator />
+        </ToastProvider>
+      </ThemeManager>
   ) : (
     <ActivityIndicator size="small"></ActivityIndicator>
   );

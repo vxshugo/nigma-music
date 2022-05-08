@@ -78,8 +78,11 @@ const AudioPlayer = () => {
 
 	useEffect(() => {
 		currentSong.action === "play" && startTimer();
-		getArtist()
 	});
+
+	useEffect(() => {
+		getArtist()
+	},[])
 
 	const onScrub = (value) => {
 		clearInterval(intervalRef.current);

@@ -22,9 +22,9 @@ const OnBoarding = ({
         }}>
             Music is not an entertainment, but also it is our life
         </McText>
-        <View style={{ marginTop: 150}}>
-            <LoginButton bgColor={Colors.primary} text={"Login"} onPress={()=>navigation.navigate("Library")}/>
-            <LoginButton bgColor={Colors.accent} text={"Registration"} onPress={()=>navigation.navigate("Library")}/>
+        <View style={{ marginTop: 60}}>
+            <LoginButton bgColor={Colors.primary} text={"Login"} onPress={()=>navigation.navigate("Login")}/>
+            <LoginButton bgColor={Colors.accent} text={"Registration"} onPress={()=>navigation.navigate("Register")}/>
         </View>
     </Container>
 )

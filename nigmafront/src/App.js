@@ -42,6 +42,7 @@ const App = () => {
 	}, [dispatch, user]);
 
 	return (
+
 		<Fragment>
 			{user &&
 				location.pathname !== "/login" &&

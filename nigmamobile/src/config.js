@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://nigma-server.herokuapp.com/api'
