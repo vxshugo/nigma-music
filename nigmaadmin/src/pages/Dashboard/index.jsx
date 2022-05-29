@@ -14,6 +14,7 @@ const Dashboard = () => {
 	const { users } = useSelector((state) => state.users);
 	const { songs } = useSelector((state) => state.songs);
 	const { playlists } = useSelector((state) => state.playlists);
+	const {artists} = (useSelector((state) => state.artist));
 
 	return (
 		<div className={styles.container}>

@@ -28,5 +28,9 @@ router.get('/:id', async (req,res) => {
     const artist = await Artist.findById(req.params.id);
     res.status(200).send({ data: artist });
 })
+router.get('/', async (req,res) => {
+    const artists = await Artist.find();
+    res.status(200).send({ data: artists });
+})
 
 module.exports = router;

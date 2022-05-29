@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { getAllSongs } from "./redux/songsSlice/apiCalls";
 import { getAllUsers } from "./redux/usersSlice/apiCalls";
+import {getAllArtists} from "./redux/artist/apiCalls";
 import { getAllPlaylists } from "./redux/playlistSlice/apiCalls";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
@@ -12,6 +13,7 @@ import Users from "./pages/Users";
 import Songs from "./pages/Songs";
 import SongForm from "./components/Forms/SongForm";
 import UserForm from "./components/Forms/UserForm";
+import Artist from "./pages/Artist";
 
 function App() {
 	const user = useSelector((state) => state.auth.user);
@@ -29,6 +31,7 @@ function App() {
 
 		if (user && token) {
 			getAllSongs(dispatch);
+			getAllArtists(dispatch);
 			getAllUsers(dispatch);
 			getAllPlaylists(dispatch);
 		}
@@ -47,6 +50,7 @@ function App() {
 						<Route path="/users/:id" component={UserForm} />
 						<Route exact path="/users" component={Users} />
 						<Route exact path="/songs" component={Songs} />
+						<Route exact path="/artist" component={Artist} />
 					</main>
 				</Fragment>
 			)}

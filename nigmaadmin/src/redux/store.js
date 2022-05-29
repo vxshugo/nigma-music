@@ -7,12 +7,14 @@ import authReducer from "./authSlice";
 import usersReducer from "./usersSlice";
 import songsReducer from "./songsSlice";
 import playlistReducer from "./playlistSlice";
+import artistReducer from "./artist";
 
 const reducers = combineReducers({
 	auth: authReducer,
 	users: usersReducer,
 	songs: songsReducer,
 	playlists: playlistReducer,
+	artist: artistReducer,
 });
 
 const persistConfig = {

@@ -5,6 +5,7 @@ import { logout } from "../../redux/authSlice";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import PeopleIcon from "@mui/icons-material/People";
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import ExitToApp from "@mui/icons-material/ExitToApp";
 import styles from "./styles.module.scss";
 
@@ -12,6 +13,7 @@ const options = [
 	{ name: "dashboard", path: "/", icon: <DashboardIcon /> },
 	{ name: "users", path: "/users", icon: <PeopleIcon /> },
 	{ name: "songs", path: "/songs", icon: <MusicNoteIcon /> },
+	{ name: "artist", path: "/artist", icon: <LibraryMusicIcon /> },
 ];
 
 const Sidebar = () => {

@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://nigma-server.herokuapp.com/api'
+export const BASE_URL = 'http://localhost:5000/api'

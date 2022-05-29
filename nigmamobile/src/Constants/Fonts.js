@@ -3,15 +3,14 @@
  * Detail please check src/root.js
  */
 const customFonts = {
-  'Montserrat-Regular': require('Assets/fonts/Montserrat-Regular.ttf'),
-  'Montserrat-Black': require('Assets/fonts/Montserrat-Black.ttf'),
-  'Montserrat-Medium': require('Assets/fonts/Montserrat-Medium.ttf'),
-  'Montserrat-SemiBold': require('Assets/fonts/Montserrat-SemiBold.ttf'),
-  'Montserrat-Bold': require('Assets/fonts/Montserrat-Bold.ttf'),
-  'Montserrat-Italic': require('Assets/fonts/Montserrat-Italic.ttf'),
-  'OpenSans-Regular': require('Assets/fonts/OpenSans-Regular.ttf'),
-  'Montserrat-Italic': require('Assets/fonts/Montserrat-Italic.ttf'),
-  'GreatVibes-Regular': require('Assets/fonts/GreatVibes-Regular.ttf'),
+  'Montserrat-Regular': require('../../assets/fonts/Montserrat-Regular.ttf'),
+  'Montserrat-Black': require('../../assets/fonts/Montserrat-Black.ttf'),
+  'Montserrat-Medium': require('../../assets/fonts/Montserrat-Medium.ttf'),
+  'Montserrat-SemiBold': require('../../assets/fonts/Montserrat-SemiBold.ttf'),
+  'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
+  'Montserrat-Italic': require('../../assets/fonts/Montserrat-Italic.ttf'),
+  'OpenSans-Regular': require('../../assets/fonts/OpenSans-Regular.ttf'),
+  'GreatVibes-Regular': require('../../assets/fonts/GreatVibes-Regular.ttf'),
 };
 const type = {
   primary: 'Montserrat-Regular',
