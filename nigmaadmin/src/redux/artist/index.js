@@ -11,6 +11,16 @@ export const artistSlice = createSlice({
         error: false,
     },
     reducers:{
+        createArtistStart:(state) => {
+          state.createArtistProgress = true;
+        },
+        createArtistSuccess: (state,action) => {
+            state.artists.push(action.payload);
+        },
+        createArtistFailure: (state) => {
+            state.error = true;
+            state.createArtistProgress= false;
+        },
         getAllArtistStart: (state)=>{
           state.getAllArtistProgress = true;
         },
@@ -21,14 +31,48 @@ export const artistSlice = createSlice({
         getAllArtistFailure: (state) => {
             state.error = true;
             state.getAllArtistProgress = false;
+        },
+        updateArtistStart: (state) => {
+            state.isFetching = true;
+        },
+        updateArtistSuccess: (state, action) => {
+            const index = state.artists.findIndex(
+                (artist) => artist._id === action.payload._id
+            );
+            state.artists[index] = action.payload;
+            state.isFetching = false;
+        },
+        updateArtistFailure: (state) => {
+            state.error = true;
+            state.isFetching = false;
+        },
+        deleteArtistStart: (state) => {
+            state.isFetching = true;
+        },
+        deleteArtistSuccess: (state, action) => {
+            state.artists = state.artists.filter((artist) => artist._id !== action.payload);
+            state.isFetching = false;
+        },
+        deleteArtistFailure: (state)=> {
+            state.error = true;
+            state.isFetching = false;
         }
     }
 })
 
 export const {
+    createArtistStart,
+    createArtistSuccess,
+    createArtistFailure,
     getAllArtistStart,
     getAllArtistSuccess,
     getAllArtistFailure,
+    updateArtistStart,
+    updateArtistSuccess,
+    updateArtistFailure,
+    deleteArtistSuccess,
+    deleteArtistFailure,
+    deleteArtistStart,
 } = artistSlice.actions;
 
 export default artistSlice.reducer;

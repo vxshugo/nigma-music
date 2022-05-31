@@ -14,6 +14,7 @@ import Songs from "./pages/Songs";
 import SongForm from "./components/Forms/SongForm";
 import UserForm from "./components/Forms/UserForm";
 import Artist from "./pages/Artist";
+import ArtistForm from "./components/Forms/ArtistForm";
 
 function App() {
 	const user = useSelector((state) => state.auth.user);
@@ -48,6 +49,7 @@ function App() {
 						<Route exact path="/" component={Dashboard} />
 						<Route path="/songs/:id" component={SongForm} />
 						<Route path="/users/:id" component={UserForm} />
+						<Route path="/artist/:id" component={ArtistForm} />
 						<Route exact path="/users" component={Users} />
 						<Route exact path="/songs" component={Songs} />
 						<Route exact path="/artist" component={Artist} />

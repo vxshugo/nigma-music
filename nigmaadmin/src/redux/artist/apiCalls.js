@@ -2,6 +2,19 @@ import axiosInstance from "../axiosInstance";
 import { toast } from "react-toastify";
 import * as actions from './index';
 
+export const createArtist = async (artist, dispatch) => {
+    dispatch(actions.createArtistStart());
+    try {
+        const {data} = await axiosInstance.post('/artist', artist);
+        dispatch(actions.createArtistSuccess(data.data));
+        toast.success(data.message);
+        return true;
+    }catch (error) {
+        dispatch(actions.createArtistFailure());
+        return false;
+    }
+}
+
 export const getAllArtists = async (dispatch) => {
     dispatch(actions.getAllArtistStart());
     try {
@@ -10,6 +23,32 @@ export const getAllArtists = async (dispatch) => {
         return true;
     }catch (error) {
         dispatch(actions.getAllArtistFailure());
+        return false;
+    }
+}
+
+export const updateArtist = async (id,artist, dispatch) => {
+    dispatch(actions.updateArtistStart());
+    try {
+        const {data} = await axiosInstance.put(`/artist/${id}`, artist);
+        dispatch(actions.updateArtistSuccess(data.data));
+        toast.success(data.message);
+        return true
+    }catch (error) {
+        dispatch(actions.updateArtistFailure());
+        return false;
+    }
+}
+
+export const deleteArtist = async (id, dispatch) => {
+    dispatch(actions.deleteArtistStart());
+    try {
+        const { data } = await axiosInstance.delete(`/artist/${id}`);
+        dispatch(actions.deleteArtistSuccess(id));
+        toast.success(data.message);
+        return true;
+    }catch (error) {
+        dispatch(actions.deleteArtistFailure());
         return false;
     }
 }

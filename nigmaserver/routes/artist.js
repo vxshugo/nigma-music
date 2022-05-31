@@ -9,7 +9,7 @@ const {User} = require("../models/user");
 const {PlayList} = require("../models/playList");
 
 //create Artist
-router.post("/", async (req, res) => {
+router.post("/", admin,async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send({ message: error.details[0].message });
 
@@ -33,4 +33,15 @@ router.get('/', async (req,res) => {
     res.status(200).send({ data: artists });
 })
 
+router.put('/:id', [validateObjectId, admin], async (req, res)=>{
+    const artist = await Artist.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    });
+    res.send({data: artist, message: 'Updated artist successfully'});
+})
+
+router.delete("/:id", [validateObjectId, admin], async (req, res) => {
+    await Artist.findByIdAndDelete(req.params.id);
+    res.status(200).send()
+})
 module.exports = router;

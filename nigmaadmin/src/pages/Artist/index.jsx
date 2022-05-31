@@ -15,7 +15,7 @@ const Artist = () =>{
                <h1>
                    artist <LibraryMusicIcon/>
                </h1>
-               <Link>
+               <Link to="/artist/new">
                    <Button startIcon={<AddIcon/>} label="Add New Artist"/>
                </Link>
            </div>
