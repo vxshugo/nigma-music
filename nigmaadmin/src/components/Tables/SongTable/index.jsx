@@ -29,22 +29,24 @@ const SongTable = ({ songs }) => {
 		deleteSong(id, dispatch);
 	};
 
-	const artistname = songs.map((song,index) => {
-		return song.artist
-	})
-
-	useEffect(()=> {
-		const getArtist = async (id) => {
-			try {
-				const url = process.env.REACT_APP_API_URL + "/artist/" + id;
-				const res = await axiosInstance.get(url)
-				setArtist(res.data)
-			}catch (e){
-				console.log(e)
-			}
-		}
-		getArtist(artistname)
-	},[])
+	// const artistname = songs.map((song,index) => {
+	// 	return song.artist
+	// })
+	//
+	// useEffect(()=> {
+	// 	const getArtist = (e) => {
+	// 		e.map(async item => {
+	// 			try {
+	// 				const url = process.env.REACT_APP_API_URL + "/artist/" + item;
+	// 				const res = await axiosInstance.get(url)
+	// 				setArtist(res.data)
+	// 			} catch (e) {
+	// 				console.log(e)
+	// 			}
+	// 		})
+	// 	}
+	// 	getArtist(artistname)
+	// },[])
 
 	return (
 		<TableContainer component={Paper} className={styles.table_container}>
@@ -52,6 +54,7 @@ const SongTable = ({ songs }) => {
 				<TableHead>
 					<TableRow>
 						<TableCell align="center">Image</TableCell>
+						<TableCell align="center">ID</TableCell>
 						<TableCell align="center">name</TableCell>
 						<TableCell align="center">Artist</TableCell>
 						<TableCell align="center">Actions</TableCell>
@@ -60,6 +63,7 @@ const SongTable = ({ songs }) => {
 				{loading && (
 					<TableBody>
 						<TableRow>
+							<TableCell align="center"></TableCell>
 							<TableCell align="center"></TableCell>
 							<TableCell align="center"></TableCell>
 							<TableCell align="left">
@@ -81,8 +85,9 @@ const SongTable = ({ songs }) => {
 											<TableCell align="center">
 												<img className={styles.song_img} src={song.img} alt="" />
 											</TableCell>
+											<TableCell align="center">{song._id}</TableCell>
 											<TableCell align="center">{song.name}</TableCell>
-											<TableCell align="center">{artist?.data?.name}</TableCell>
+											<TableCell align="center">{song.artist}</TableCell>
 											<TableCell align="center">
 												<Link to={`/songs/${song._id}`}>
 													<IconButton className={styles.edit_btn}>

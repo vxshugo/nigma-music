@@ -52,3 +52,16 @@ export const deleteArtist = async (id, dispatch) => {
         return false;
     }
 }
+
+export const addArtistSong = async (id, musicId, dispatch) => {
+    dispatch(actions.addArtistSongStart());
+    try {
+        const {data} = await axiosInstance.put(`/artist/add/${id}`, musicId);
+        dispatch(actions.addArtistSongSuccess(data.data));
+        toast.success(data.message);
+        return true;
+    }catch (e) {
+        dispatch(actions.addArtistSongFailure());
+        return false;
+    }
+}

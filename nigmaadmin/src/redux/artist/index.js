@@ -8,6 +8,7 @@ export const artistSlice = createSlice({
         getAllArtistProgress: false,
         updateArtistProgress: false,
         deleteArtistProgress: false,
+        addSongProgress: false,
         error: false,
     },
     reducers:{
@@ -56,6 +57,18 @@ export const artistSlice = createSlice({
         deleteArtistFailure: (state)=> {
             state.error = true;
             state.isFetching = false;
+        },
+        addArtistSongStart: (state) =>{
+            state.addSongProgress = true;
+        },
+        addArtistSongSuccess: (state, action) => {
+            const index = state.artists.indexOf(action.payload._id);
+            state.artists[index] = action.payload;
+            state.addSongProgress = false;
+        },
+        addArtistSongFailure: (state) => {
+            state.error = true;
+            state.addSongProgress = false;
         }
     }
 })
@@ -73,6 +86,9 @@ export const {
     deleteArtistSuccess,
     deleteArtistFailure,
     deleteArtistStart,
+    addArtistSongSuccess,
+    addArtistSongFailure,
+    addArtistSongStart
 } = artistSlice.actions;
 
 export default artistSlice.reducer;

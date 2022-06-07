@@ -9,7 +9,7 @@ const {User} = require("../models/user");
 const {PlayList} = require("../models/playList");
 
 //create Artist
-router.post("/", admin,async (req, res) => {
+router.post("/",async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send({ message: error.details[0].message });
 
@@ -26,7 +26,10 @@ router.post("/", admin,async (req, res) => {
 
 router.get('/:id', async (req,res) => {
     const artist = await Artist.findById(req.params.id);
-    res.status(200).send({ data: artist });
+    if (!artist) return res.status(404).send("not found")
+
+    const songs = await Song.find({_id : artist.songs });
+    res.status(200).send({ data: artist, songs });
 })
 router.get('/', async (req,res) => {
     const artists = await Artist.find();
@@ -43,5 +46,24 @@ router.put('/:id', [validateObjectId, admin], async (req, res)=>{
 router.delete("/:id", [validateObjectId, admin], async (req, res) => {
     await Artist.findByIdAndDelete(req.params.id);
     res.status(200).send()
+})
+// add song artist
+router.put("/add/:id", async  (req,res) => {
+    const schema = Joi.object({
+        songId: Joi.string().required(),
+    })
+    const { error } = schema.validate(req.body);
+
+    if (error) return res.status(400).send({ message: error.details[0].message })
+
+    const artist = await Artist.findById(req.params.id)
+
+    if (artist.songs.indexOf(req.body.songId) === -1){
+        artist.songs.push(req.body.songId);
+    }
+    await artist.save();
+    res.status(200).send({
+        data: artist, message: "Added to Artist"
+    });
 })
 module.exports = router;

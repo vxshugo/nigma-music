@@ -15,10 +15,13 @@ import Button from "../../Button";
 const ArtistForm = () => {
     const [data, setData] = useState({
         name: '',
+        verify: false,
         img: null,
         songs:[],
         albums:[],
     })
+    const [cat,setCat] = useState([]);
+    const [arr,setArr] = useState([]);
     const [errors, setErrors] = useState({name: ''});
     const {artists, createArtistProgress, updateArtistProgress} = (useSelector(
         (state) => state.artist));
@@ -31,18 +34,20 @@ const ArtistForm = () => {
         if (id !== "new" && artist[0]) {
             setData({
                 name: artist[0].name,
+                verify: true,
                 img: artist[0].img,
-                songs: artist[0].songs,
-                albums:artist[0].albums
+                songs: artist[0].songs[0],
+                albums:artist[0].albums[0]
             });
         }
     }, [id, artists]);
 
     const schema = {
         name: Joi.string().required().label("Name"),
+        verify: Joi.bool().required().label("Verify"),
         img: Joi.string().required().label("Image"),
-        songs: Joi.string().required().label("Songs"),
-        albums: Joi.string().required().label("Albums"),
+        songs: Joi.array().required().label("Songs"),
+        albums: Joi.array().required().label("Albums"),
     }
 
     const handleInputState = (name, value) => {
@@ -52,6 +57,15 @@ const ArtistForm = () => {
     const handleErrorState = (name, value) => {
         setErrors((prev) => ({ ...prev, [name]: value }));
     };
+
+    const handleCat = (e, name) => {
+        setCat(e.target.value.split(','));
+        setData((prev) => ({...prev, ['songs']: cat}))
+    }
+    const handleArr = (e, name) => {
+        setArr(e.target.value.split(','));
+        setData((prev) => ({...prev, ["albums"]: arr}))
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -97,6 +111,14 @@ const ArtistForm = () => {
                             value={data.img}
                             handleInputState={handleInputState}
                         />
+                    </div>
+                    <div className={styles.input_container}>
+                        <label style={{fontSize: 16}}>Songs</label>
+                        <input name="songs" type="text" onChange={handleCat} className={styles.input}/>
+                    </div>
+                    <div className={styles.input_container}>
+                        <label style={{fontSize: 16}}>Songs</label>
+                        <input name="albums" type="text" onChange={handleArr} className={styles.input}/>
                     </div>
                     <Button
                         type="submit"

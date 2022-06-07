@@ -88,8 +88,8 @@ const Register = ({navigation}) => {
                         style={{ height: 52, width: 112}}
                         onValueChange={(itemValue, itemIndex) => setMonth(itemValue)}
                     >
-                        {months.map((item) => (
-                            <Picker.Item label={item.name} value={item.value} />
+                        {months.map((item, index) => (
+                            <Picker.Item key={index} label={item.name} value={item.value} />
                         ))}
                     </Picker>
                 </DateContainer>

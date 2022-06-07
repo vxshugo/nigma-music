@@ -5,25 +5,24 @@ import jwt_decode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import newAPI from "../Context/base"
 import { useToast } from 'react-native-styled-toast'
+import axiosInstance from "../Context/base";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children }) => {
   const [userInfo, setUserInfo] = useState({})
+  const [token, setToken] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [notify, setNotify] = useState("")
   const [splashLoading, setSplashLoading] = useState(false)
 
-  const register = async (name, email,password,gender,month,date,year,{navigation} ) => {
+  const register = async (data) => {
     setIsLoading(true);
-
     try {
+        console.log(data)
         const url = BASE_URL + "/users"
-        await newAPI.post(url,{
-            name,email,password,gender,date,month,year
-        })
-        setNotify("Success! Go to Login")
-        navigation.navigate('Login')
+        await axiosInstance.post(url,data)
+        setNotify("Account created successfully")
         setIsLoading(false)
     }catch (e){
         if(
@@ -34,7 +33,7 @@ export const AuthProvider = ({children }) => {
             setNotify(e.response.data.message)
             console.log(e.response.data)
         }else {
-            console.log(e)
+            setNotify("Something went wrong!")
         }
         setIsLoading(false)
     }
@@ -44,11 +43,11 @@ export const AuthProvider = ({children }) => {
     setIsLoading(true)
     try {
         const url = "/login"
-        const {data} = await newAPI.post(url,{email,password});
+        const {data} = await axiosInstance.post(url,{email,password});
         setNotify(data.message)
         const decodeData = jwt_decode(data.data);
         setUserInfo(decodeData)
-        await AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
+        await AsyncStorage.setItem('userInfo', JSON.stringify({...decodeData, token: data.data }))
         setIsLoading(false)
     }catch (e) {
         if(
@@ -132,7 +131,8 @@ export const AuthProvider = ({children }) => {
             splashLoading,
             login,
             register,
-            logout
+            logout,
+              token
           }}
       >
         {children}

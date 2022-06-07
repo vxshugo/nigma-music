@@ -2,6 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nigmaadmin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nigmadesktop" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/nigmamobile/mcrn-expo-easy-starter" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/nigmaserver" vcs="Git" />
   </component>

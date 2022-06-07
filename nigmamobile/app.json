@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "nigma-music",
+    "name": "Nigma Music",
     "slug": "nigma",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -26,7 +26,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "userInterfaceStyle": "automatic"
+      "userInterfaceStyle": "automatic",
+      "package": "com.vxshugo.nigma"
     },
     "web": {
       "favicon": "./assets/favicon.png"

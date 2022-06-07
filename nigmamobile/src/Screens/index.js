@@ -6,5 +6,6 @@ import Player from "./Player";
 import Register from "./Registration";
 import LastStep from "./Registration/Next";
 import Login from "./Login";
+import Subscribe from "./Subscribe";
 
-export { Home, Profile, OnBoarding, Library, Player, Login, Register,LastStep }
+export { Home, Profile, OnBoarding, Library, Player, Login, Register,LastStep, Subscribe}

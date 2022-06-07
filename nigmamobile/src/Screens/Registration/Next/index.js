@@ -10,15 +10,32 @@ import {useToast} from "react-native-styled-toast";
 
 
 const LastStep = ({navigation}) => {
-    const [name, setName] = useState(null)
     const route = useRoute();
     const {
         params: { email,password,gender,month,date,year },
     } = route;
+    const [data, setData] = useState({
+        name: "",
+        email: email,
+        password: password,
+        gender: gender,
+        month: month,
+        date: date,
+        year: year
+    })
 
     const {isLoading, register, notify} = useContext(AuthContext)
 
     const { toast } = useToast()
+
+    const onChangeText = (value) => {
+        setData((data) => ({...data, ['name']: value}))
+    }
+
+    const sendData = () => {
+        console.log(data)
+        register(data)
+    }
 
     useEffect(() => {
         if (notify == ""){
@@ -75,12 +92,12 @@ const LastStep = ({navigation}) => {
                   <McInput
                       text="vxshugo"
                       size={16}
-                      value={name}
-                      onChange={text => setName(text)}
+                      value={data.name}
+                      onChange={text => onChangeText(text)}
                   />
                   <RegisterButton
                       onPress={() => {
-                          register(name, email,password,gender,month,date,year);
+                          sendData()
                       }}
                   >
                       <McText size={13} color={Colors.grey5} black>

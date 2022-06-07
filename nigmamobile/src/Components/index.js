@@ -8,5 +8,6 @@ import McTabIcon from './McTabIcon';
 import LoginButton from "./LoginButton";
 import McInput from "./McInput";
 import Loading from "./Loading";
+import Song from "./Song";
 
-export { McText, McAvatar, McImage, McIcon, McVectorIcon, McBadge, McTabIcon,LoginButton, McInput,Loading };
+export { McText, McAvatar, McImage, McIcon, McVectorIcon, McBadge, McTabIcon,LoginButton, McInput,Loading,Song };

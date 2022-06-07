@@ -14,10 +14,16 @@ import {
 import {Link} from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {deleteArtist} from "../../../redux/artist/apiCalls";
+import {MusicNote} from "@mui/icons-material";
 const ArtistTable = ({artists}) => {
 
     const dispatch= useDispatch();
     const [loading, setLoading] = useState(true);
+
+    const handleDelete = (id) => {
+        deleteArtist(id, dispatch)
+    }
 
     setTimeout(() => setLoading(false), 1000);
 
@@ -27,6 +33,7 @@ const ArtistTable = ({artists}) => {
                 <TableHead>
                     <TableRow>
                         <TableCell align="center">Image</TableCell>
+                        <TableCell align="center">ID</TableCell>
                         <TableCell align="center">Name</TableCell>
                         <TableCell align="center">Action</TableCell>
                     </TableRow>
@@ -34,6 +41,7 @@ const ArtistTable = ({artists}) => {
                 {loading && (
                     <TableBody>
                         <TableRow>
+                            <TableCell align="center"></TableCell>
                             <TableCell align="center"></TableCell>
                             <TableCell align="center">
                                 <CircularProgress style={{color: '#1ed760', margin: '2rem 0'}}/>
@@ -52,6 +60,7 @@ const ArtistTable = ({artists}) => {
                                           <TableCell align="center">
                                               <img src={artist.img} alt="" className={styles.song_img}/>
                                           </TableCell>
+                                          <TableCell align="center">{artist._id}</TableCell>
                                           <TableCell align="center">{artist.name}</TableCell>
                                           <TableCell align="center">
                                               <Link to={`/artist/${artist._id}`}>
@@ -61,9 +70,15 @@ const ArtistTable = ({artists}) => {
                                               </Link>
                                               <IconButton
                                                   className={styles.delete_btn}
+                                                  onClick={( ) => handleDelete(artist._id)}
                                               >
                                                   <DeleteIcon/>
                                               </IconButton>
+                                              <Link to={`/add-song/${artist._id}`}>
+                                                  <IconButton className={styles.edit_btn}>
+                                                      <MusicNote/>
+                                                  </IconButton>
+                                              </Link>
                                           </TableCell>
                                       </TableRow>
                                   )
