@@ -45,6 +45,8 @@ export const AuthProvider = ({children }) => {
         const url = "/login"
         const {data} = await axiosInstance.post(url,{email,password});
         setNotify(data.message)
+        setToken(data.data)
+        await AsyncStorage.setItem("@userToken", JSON.stringify(data.data))
         const decodeData = jwt_decode(data.data);
         setUserInfo(decodeData)
         await AsyncStorage.setItem('userInfo', JSON.stringify({...decodeData, token: data.data }))
@@ -108,10 +110,16 @@ export const AuthProvider = ({children }) => {
           let userInfo = await AsyncStorage.getItem('userInfo');
           userInfo = JSON.parse(userInfo);
 
+          let token = await AsyncStorage.getItem("@userToken");
+          token = JSON.parse(token)
+
           if (userInfo){
               setUserInfo(userInfo);
           }
 
+          if (token){
+              setToken(token);
+          }
           setSplashLoading(false);
       }catch (e) {
           setSplashLoading(false)

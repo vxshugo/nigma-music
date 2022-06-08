@@ -10,8 +10,7 @@ import axiosInstance from "../../Context/base";
 const Library = ({
                         params,
                     }) => {
-    const {userInfo, isLoading, logout} = useContext(AuthContext)
-    console.log(userInfo)
+    const {userInfo,token, isLoading, logout} = useContext(AuthContext)
     const [playlists, setPlaylists] = useState([]);
     const [songs, setSongs] = useState([]);
     const [isFetching, setIsFetching] = useState(false)
@@ -22,7 +21,7 @@ const Library = ({
             const { data } = await axiosInstance.get(url,{
                 headers: {
                     "Content-Type": "application/json",
-                    "x-auth-token": userInfo.token ? userInfo.token : "",
+                    "x-auth-token": token ? token : "",
                 }
                }
             )
@@ -55,7 +54,7 @@ const Library = ({
     }
     useEffect(() => {
         getRandomPlaylist()
-    },[]);
+    },[token]);
     useEffect(() => {
         getSongs();
     },[])
