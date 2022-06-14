@@ -1,30 +1,23 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { View, Switch, Button } from 'react-native';
 import styled from 'styled-components/native';
 
-import { useTheme, Fonts, Images, Metrics } from 'Themes';
-import { McText, McImage, PlayButton } from 'Components';
+import { useTheme, Fonts, Images, Metrics } from '../../Themes';
+import { McText, McImage, PlayButton } from '../../Components';
+import {AuthContext} from "../../Context/Authcontext";
+import {Colors} from "../../Constants";
 
 const Profile = ({ navigation }) => {
+    const {logout} = useContext(AuthContext)
   const theme = useTheme();
   return (
     <Container>
       <Title>Profile Screen</Title>
-      <SwitchSection>
-        <Text>Theme Switch</Text>
-        <Switch
-          value={theme.mode === 'dark'}
-          onValueChange={(value) => theme.setMode(value ? 'dark' : 'light')}
-          style={{
-            marginLeft: 12,
-          }}
-        />
-      </SwitchSection>
       <Button
         onPress={() => {
-          navigation.navigate('Home');
+            logout()
         }}
-        title="Back"
+        title="Logout"
       ></Button>
     </Container>
   );
@@ -34,11 +27,12 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.theme.colors.background};
+  background: ${Colors.background};
 `;
 const Title = styled.Text`
   font-size: 30px;
-  color: ${(props) => props.theme.colors.text};
+  color: #fff;
+  margin-bottom: 30px;
 `;
 const Text = styled.Text`
   font-size: 16px;

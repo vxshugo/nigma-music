@@ -15,7 +15,18 @@ export const AuthProvider = ({children }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [notify, setNotify] = useState("")
   const [splashLoading, setSplashLoading] = useState(false)
+  const [currentSong, setCurrentSong] = useState(null)
 
+
+  const setCurrentTrack = async (data) => {
+    try {
+        console.log(data)
+        await AsyncStorage.setItem("@currentTrack", JSON.stringify(data))
+        setCurrentSong(data)
+    }catch (e) {
+        console.log(e)
+    }
+  }
   const register = async (data) => {
     setIsLoading(true);
     try {
@@ -126,8 +137,23 @@ export const AuthProvider = ({children }) => {
           console.log(`is logged in error`);
       }
   }
+
+  const getCurrentTrack = async () => {
+    try {
+        let track = await AsyncStorage.getItem('@currentTrack')
+        track = JSON.parse(track)
+
+        if (track){
+            setCurrentSong(track)
+        }
+    }catch (e){
+        console.log(e)
+    }
+  }
+
   useEffect(() => {
       isLoggedIn();
+      getCurrentTrack();
   },[])
 
   return(
@@ -140,7 +166,9 @@ export const AuthProvider = ({children }) => {
             login,
             register,
             logout,
-              token
+              token,
+              setCurrentTrack,
+              currentSong
           }}
       >
         {children}

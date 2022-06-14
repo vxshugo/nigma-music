@@ -9,5 +9,6 @@ import LoginButton from "./LoginButton";
 import McInput from "./McInput";
 import Loading from "./Loading";
 import Song from "./Song";
+import PlayButton from "./PlayButton";
 
-export { McText, McAvatar, McImage, McIcon, McVectorIcon, McBadge, McTabIcon,LoginButton, McInput,Loading,Song };
+export { McText, McAvatar, McImage, McIcon, McVectorIcon, McBadge, McTabIcon,LoginButton, McInput,Loading,Song,PlayButton };

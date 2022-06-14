@@ -8,5 +8,6 @@ import LastStep from "./Registration/Next";
 import Login from "./Login";
 import Subscribe from "./Subscribe";
 import Music from "./Music";
+import Playlist from "./Playlist";
 
-export { Home, Profile, OnBoarding, Library, Player, Login, Register,LastStep, Subscribe, Music}
+export { Home, Profile, OnBoarding, Library, Player, Login, Register,LastStep, Subscribe, Music,Playlist}

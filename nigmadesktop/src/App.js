@@ -57,7 +57,7 @@ const App = () => {
 					</Fragment>
 				)}
 			<Switch>
-				<Route exact path="/" component={Login} />
+				<Route exact path="/" component={Login}/>
 				<PrivateRoute exact user={user} path="/home" component={Home} />
 				<PrivateRoute
 					exact

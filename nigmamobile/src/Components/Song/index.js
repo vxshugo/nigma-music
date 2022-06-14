@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {StatusBar,ScrollView, Image,Text, View, TextInput, TouchableWithoutFeedback, FlatList} from 'react-native'
 import styled from "styled-components/native";
 import {McImage, McText} from "../index";
 import {Colors, Images} from "../../Constants";
 import axiosInstance from "../../Context/base";
+import {AuthContext} from "../../Context/Authcontext";
 const Song = ({song}) => {
      const [artist, setArtist] = useState({})
+    const {setCurrentTrack} = useContext(AuthContext)
 
     const getArtistName = async () => {
          try {
@@ -16,6 +18,8 @@ const Song = ({song}) => {
          }
     }
 
+
+
     useEffect(() => {
         getArtistName()
     },[])
@@ -25,7 +29,9 @@ const Song = ({song}) => {
     return (
        <Container>
           <View style={{flexDirection: 'row'}}>
-              <Left>
+              <Left onPress={() => {
+                  setCurrentTrack(song)
+              }}>
                   <SongImage source={{uri: song.img === "" ? "https://media.discordapp.net/attachments/771761528739069962/983759312885272716/Group_113_1.png" : song.img}}
                   />
               </Left>
@@ -57,7 +63,7 @@ const Container = styled.View`
   align-items: flex-start;
   
 `
-const Left = styled.View`
+const Left = styled.TouchableOpacity`
   width: 42px;
   height: 42px;
   border-radius: 42px;

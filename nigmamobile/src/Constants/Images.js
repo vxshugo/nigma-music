@@ -14,12 +14,12 @@ const sub = require('../../assets/images/subsc.png');
 const music = require('../../assets/images/Find.png');
 const back = require('../../assets/images/Find.png');
 const next = require('../../assets/images/Find.png');
-const play = require('../../assets/images/Find.png');
+const play = require('../../assets/images/stop.png');
 const refresh = require('../../assets/images/Find.png');
 const right_arrow = require('../../assets/images/Find.png');
 const right = require('../../assets/images/right.png');
 const sound = require('../../assets/images/Find.png');
-const stop = require('../../assets/images/Find.png');
+const stop = require('../../assets/images/PLay.png');
 const up = require('../../assets/images/Find.png');
 const thumb = require('../../assets/images/Find.png');
 /**
@@ -34,5 +34,7 @@ export default {
   logo,
   menu,
   sub,
+  play,
+  stop,
   right
 };

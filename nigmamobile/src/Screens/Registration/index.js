@@ -1,19 +1,18 @@
 import React, {useContext, useState} from "react";
-import {Text, View, StatusBar, TouchableOpacity, TextInput} from 'react-native'
+import {Text, View, StatusBar, TouchableOpacity, TextInput, Picker} from 'react-native'
 import Entypo from "react-native-vector-icons/Entypo";
 import {Colors} from "../../Constants";
 import {McInput, McText} from "../../Components";
 import styled from "styled-components/native";
 import {AuthContext} from "../../Context/Authcontext";
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import {Picker} from '@react-native-picker/picker';
 
 
 
 const Register = ({navigation}) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
-    const [month, setMonth] = useState("Select")
+    const [month, setMonth] = useState("month")
     const [date, setDate] = useState(null)
     const [year, setYear] = useState(null)
     const [gender, setGender] = useState(null)
@@ -80,20 +79,18 @@ const Register = ({navigation}) => {
                     onChange={text => setPassword(text)}
                 />
             </InputContainer>
-            <DateContainer>
-                <Picker
-                    selectedValue={month}
-                    placeholder="Select Month"
-                    style={{ height: 50, width: 200}}
-                    mode="dialog"
-                    onValueChange={(itemValue, itemIndex) => setMonth(itemValue)}
-                >
-                    {months.map((item, index) => (
-                        <Picker.Item key={index} label={item.name} value={item.value} />
-                    ))}
-                </Picker>
-            </DateContainer>
             <View style={{flexDirection: 'row', marginBottom: 12}}>
+                <DateContainer>
+                    <Picker
+                        selectedValue={month}
+                        style={{ height: 52, width: 112}}
+                        onValueChange={(itemValue, itemIndex) => setMonth(itemValue)}
+                    >
+                        {months.map((item, index) => (
+                            <Picker.Item key={index} label={item.name} value={item.value} />
+                        ))}
+                    </Picker>
+                </DateContainer>
                 <View style={{width:74, height: 52, marginRight: 23, border: '1px solid black'}}>
                     <TextInput
                         placeholder="Date"
@@ -150,11 +147,13 @@ const InputContainer = styled.View`
   align-items: center;
 `
 const DateContainer = styled.View`
-  flex: 3;
   background-color: white;
   border: 1px solid black;
-  align-items: center;
-  margin-bottom: 10px;
+  width: 112px;
+  height: 52px;
+  padding-left: 5px;
+  padding-right: 60px;
+  margin-right: 35px;
 `
 const LoginButton = styled.TouchableOpacity`
   width: 100%;

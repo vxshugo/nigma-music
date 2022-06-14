@@ -1,15 +1,14 @@
 import React, {useContext, useEffect, useState} from "react";
-import {StatusBar,ScrollView, Image,Text, View, TextInput, TouchableWithoutFeedback, FlatList} from 'react-native'
+import {StatusBar,ScrollView, TouchableOpacity,Image,Text, View, TextInput, TouchableWithoutFeedback, FlatList} from 'react-native'
 import styled from "styled-components/native";
 import {Colors, Images, Metrics} from "../../Constants";
-import {McImage, McText, Song} from "../../Components";
+import {McImage, McText, PlayButton, Song} from "../../Components";
 import {AuthContext} from "../../Context/Authcontext";
 import {BASE_URL} from "../../config";
-import newAPI from "../../Context/base";
 import axiosInstance from "../../Context/base";
-const Library = ({
-                        params,
-                    }) => {
+import BottomBar from "./BottomBar";
+
+const Library = ({navigation}) => {
     const {userInfo,token, isLoading, logout} = useContext(AuthContext)
     const [playlists, setPlaylists] = useState([]);
     const [songs, setSongs] = useState([]);
@@ -37,11 +36,11 @@ const Library = ({
     const getSongs = async () => {
         try {
             setIsFetching(true)
-            const url = BASE_URL + "/songs";
+            const url = BASE_URL + "/songs/like";
             const { data } = await axiosInstance.get(url,{
                     headers: {
                         "Content-Type": "application/json",
-                        "x-auth-token": userInfo.token ? userInfo.token : "",
+                        "x-auth-token": token ? token : "",
                     }
                 }
             )
@@ -55,6 +54,7 @@ const Library = ({
     useEffect(() => {
         getRandomPlaylist()
     },[token]);
+
     useEffect(() => {
         getSongs();
     },[])
@@ -62,7 +62,8 @@ const Library = ({
     const _renderItem = ({item,index}) => {
         return(
             <View>
-                <View
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Playlist', {ID: item._id})}
                     style={{
                         marginTop: 16,
                         marginLeft: index === 0 ? 24: 0,
@@ -84,7 +85,7 @@ const Library = ({
                     >
                         {item.desc} ({item.songs.length} Songs)
                     </McText>
-                </View>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -103,19 +104,24 @@ const Library = ({
                 >
                     Library
                 </McText>
+                <View style={{marginRight: 24, marginTop:10}}>
+                    <PlayButton onPress={() => navigation.navigate("Profile")} size={41} circle={44.88} icon={Images.profile}/>
+                </View>
             </Navbar>
-            <SearchSection>
-                <McImage
-                    source={Images.find}
-                    style={{ marginLeft: 16, marginRight: 12 }}
-                >
-                </McImage>
-                <TextInput
-                    placeholder="Song or Artist"
-                    placeholderTextColor={Colors.grey3}
-                >
-                </TextInput>
-            </SearchSection>
+            <ConSearch>
+                <SearchSection>
+                    <McImage
+                        source={Images.find}
+                        style={{ marginLeft: 16, marginRight: 12 }}
+                    >
+                    </McImage>
+                    <TextInput
+                        placeholder="Song or Artist"
+                        placeholderTextColor={Colors.grey3}
+                    >
+                    </TextInput>
+                </SearchSection>
+            </ConSearch>
             <TitleSection>
                 <McText medium size={20} color={Colors.grey4}>
                     Playlists
@@ -152,9 +158,9 @@ const Library = ({
                     style={{}}
                 >
                     {
-                        songs.map((item, index) => {
+                        songs.map((item) => {
                             return(
-                                <Song key={index} song={item}/>
+                                <Song key={`id-${item._id}`} song={item}/>
                             )
                         })
                     }
@@ -168,18 +174,24 @@ const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${Colors.background};
 `
+const ConSearch = styled.View`
+    margin: 5px 24px;
+`
 const SearchSection = styled.View`
-  width: 317px;
+  width: 100%;
   height: 52px;
   border-radius: 30px;
   background-color: ${Colors.secondary};
-  margin: 20px 24px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 `
 const Navbar = styled.View`
-
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `
 const TitleSection = styled.View`
   margin: 20px 24px 0px;
@@ -198,6 +210,17 @@ const PlaylistImage = styled.Image`
   height: 186px;
   border-radius: 10px;
   margin-bottom: 12px;
+`
+
+const BottomSection = styled.View`
+  margin: 0 24px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  z-index: 1;
 `
 
 export default Library;

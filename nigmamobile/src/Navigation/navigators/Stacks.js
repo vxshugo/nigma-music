@@ -2,7 +2,19 @@ import React, {useContext, useEffect} from 'react';
 import { Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import {Home, Profile, OnBoarding, Library, Player, Login, Register, LastStep, Subscribe, Music} from '../../Screens';
+import {
+    Home,
+    Profile,
+    OnBoarding,
+    Library,
+    Player,
+    Login,
+    Register,
+    LastStep,
+    Subscribe,
+    Music,
+    Playlist
+} from '../../Screens';
 import {AuthContext} from "../../Context/Authcontext";
 import {Loading} from "../../Components";
 
@@ -59,6 +71,13 @@ const Stacks = ({ params }) => {
                             <Stack.Screen
                                 name="Player"
                                 component={Player}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                            <Stack.Screen
+                                name="Playlist"
+                                component={Playlist}
                                 options={{
                                     headerShown: false,
                                 }}

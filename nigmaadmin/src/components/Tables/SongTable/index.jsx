@@ -29,24 +29,7 @@ const SongTable = ({ songs }) => {
 		deleteSong(id, dispatch);
 	};
 
-	// const artistname = songs.map((song,index) => {
-	// 	return song.artist
-	// })
-	//
-	// useEffect(()=> {
-	// 	const getArtist = (e) => {
-	// 		e.map(async item => {
-	// 			try {
-	// 				const url = process.env.REACT_APP_API_URL + "/artist/" + item;
-	// 				const res = await axiosInstance.get(url)
-	// 				setArtist(res.data)
-	// 			} catch (e) {
-	// 				console.log(e)
-	// 			}
-	// 		})
-	// 	}
-	// 	getArtist(artistname)
-	// },[])
+
 
 	return (
 		<TableContainer component={Paper} className={styles.table_container}>
@@ -79,6 +62,7 @@ const SongTable = ({ songs }) => {
 					<TableBody>
 						{songs.length !== 0 &&
 							songs.map((song, index) => {
+
 								return (
 									(
 										<TableRow key={song._id}>
