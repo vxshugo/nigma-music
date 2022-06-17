@@ -7,13 +7,14 @@
 	justify-content: space-between;
 
 	&:hover {
-		background-color: var(--light-black);
+		background-color: var(--green-hover);
 	}
 
 	.left {
 		display: flex;
 		flex: 1;
 
+		align-items: center;
 		.play_btn {
 			margin: 0 0.5rem;
 			svg {

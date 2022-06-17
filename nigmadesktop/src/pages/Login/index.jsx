@@ -11,8 +11,10 @@ import AppleIcon from "@mui/icons-material/Apple";
 import GoogleIcon from "@mui/icons-material/Google";
 import logo from "../../images/black.svg";
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
 
 const Login = () => {
+	const {t} = useTranslation()
 	const [data, setData] = useState({ email: "", password: "" });
 	const [errors, setErrors] = useState({});
 	const { isFetching } = useSelector((state) => state.auth);
@@ -53,7 +55,7 @@ const Login = () => {
 				<form onSubmit={handleSubmit} className={styles.form_container}>
 					<div className={styles.input_container}>
 						<TextField
-							label="Enter your email"
+							label={t("mainApp.login.email")}
 							placeholder="Enter your email"
 							name="email"
 							handleInputState={handleInputState}
@@ -66,7 +68,7 @@ const Login = () => {
 					</div>
 					<div className={styles.input_container}>
 						<TextField
-							label="Password"
+							label={t("mainApp.login.password")}
 							placeholder="Password"
 							name="password"
 							handleInputState={handleInputState}
@@ -78,20 +80,24 @@ const Login = () => {
 							required={true}
 						/>
 					</div>
-					<p className={styles.forgot_password}>Forgot your password?</p>
+					<Link to="/help">
+						<p className={styles.forgot_password}>
+							{t("mainApp.login.help")}
+						</p>
+					</Link>
 					<div className={styles.form_bottom}>
-						<Checkbox label="Remember me" />
+						<Checkbox label={t("mainApp.login.remember")} />
 						<Button
 							type="submit"
-							label="LOG IN"
+							label={t("mainApp.login.login")}
 							isFetching={isFetching}
 							style={{ color: "white", background: "#15883e", width: "20rem" }}
 						/>
 					</div>
 				</form>
-				<h1 className={styles.dont_have_account}>Don't have an account?</h1>
+				<h1 className={styles.dont_have_account}>{t("mainApp.login.dontHave")}</h1>
 				<Link to="/signup">
-					<button className={styles.outline_btn}>sign up for nigma music</button>
+					<button className={styles.outline_btn}>{t("mainApp.login.singUp")}</button>
 				</Link>
 			</main>
 		</div>

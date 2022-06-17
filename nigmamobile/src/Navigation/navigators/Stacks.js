@@ -13,7 +13,7 @@ import {
     LastStep,
     Subscribe,
     Music,
-    Playlist
+    Playlist, Search, Favorite
 } from '../../Screens';
 import {AuthContext} from "../../Context/Authcontext";
 import {Loading} from "../../Components";
@@ -71,6 +71,20 @@ const Stacks = ({ params }) => {
                             <Stack.Screen
                                 name="Player"
                                 component={Player}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                            <Stack.Screen
+                                name="Search"
+                                component={Search}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                            <Stack.Screen
+                                name="Favorite"
+                                component={Favorite}
                                 options={{
                                     headerShown: false,
                                 }}

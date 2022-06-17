@@ -8,41 +8,26 @@ import logo from "../../images/toplogo226.svg";
 import styles from "./styles.module.scss";
 import Modal from "../../components/Popup";
 import {useState} from "react";
-
-const navLinks = [
-	{ name: "Premium", link: "#" },
-	{ name: "Support", link: "#" },
-	{ name: "Download", link: "#" },
-	{ name: "Sign up", link: "/signup" },
-	{ name: "Log in", link: "/login" },
-];
-
-const companyLInks = ["About", "Jobs", "For the record"];
-
-const communitiesLinks = [
-	"For Artists",
-	"Developers",
-	"Advertising",
-	"Investors",
-	"Vendors",
-];
-
-const usefulLInks = ["Support", "Web Player", "Free Mobile App"];
-
-const footerLinks = [
-	"legal",
-	"privacy center",
-	"privacy policy",
-	"Cookies",
-	"About ads",
-	"Additional CA Privacy Disclosures",
-];
-
-const footerIcons = [<InstagramIcon />, <TwitterIcon />, <FacebookIcon />];
+import {useTranslation} from "react-i18next";
+import "../../i18next";
 
 const Main = () => {
-	const [modalActive, setModalActive] = useState(true)
+	const [modalActive, setModalActive] = useState(false)
 
+	const { t, i18n } = useTranslation();
+
+
+	const changleLanguage = (lang) => {
+		i18n.changeLanguage(lang)
+	}
+
+	const navLinks = [
+		{ name: t("mainPage.navLinks.part1"), link: "/ekfowpekf" },
+		{ name: t("mainPage.navLinks.part2"), link: "/fewkofpkwe" },
+		{ name: t("mainPage.navLinks.part3"), link: "/fewkfwe" },
+		{ name: t("mainPage.navLinks.part4"), link: "/signup" },
+		{ name: t("mainPage.navLinks.part5"), link: "/login" },
+	];
 
 	return (
 		<div className={styles.container}>
@@ -58,11 +43,15 @@ const Main = () => {
 						</Link>
 					))}
 				</div>
+				<div className={styles.changeLang}>
+					<h3 onClick={() => changleLanguage('ru')} className={styles.buttonLang}>RU</h3>
+					<h3 onClick={() => changleLanguage('en')} className={styles.buttonLang}>EN</h3>
+				</div>
 			</nav>
 			<main className={styles.main_container}>
 				<div className={styles.main}>
-					<h1>Listening is everything</h1>
-					<p>Millions of songs and podcasts. No credit card needed.</p>
+					<h1>{t("mainPage.mainText.firstText")}</h1>
+					<p>{t("mainPage.mainText.secondText")}</p>
 					<Link to="/signup">
 						<Button
 							label="GET NIGMA"
@@ -76,46 +65,8 @@ const Main = () => {
 					<Link to="/" className={styles.footer_logo}>
 						<img src={logo} alt="logo" />
 					</Link>
-					<div className={styles.footer_1_links}>
-						<div className={styles.footer_heading}>Company</div>
-						{companyLInks.map((link, index) => (
-							<div className={styles.links} key={index}>
-								{link}
-							</div>
-						))}
-					</div>
-					<div className={styles.footer_1_links}>
-						<div className={styles.footer_heading}>Communities</div>
-						{communitiesLinks.map((link, index) => (
-							<div className={styles.links} key={index}>
-								{link}
-							</div>
-						))}
-					</div>
-					<div className={styles.footer_1_links}>
-						<div className={styles.footer_heading}>Useful links</div>
-						{usefulLInks.map((link, index) => (
-							<div className={styles.links} key={index}>
-								{link}
-							</div>
-						))}
-					</div>
-					<div className={styles.footer_icons}>
-						{footerIcons.map((icon, index) => (
-							<div className={styles.icon} key={index}>
-								{icon}
-							</div>
-						))}
-					</div>
 				</div>
 				<div className={styles.footer_2}>
-					<div className={styles.footer_2_links}>
-						{footerLinks.map((link, index) => (
-							<div className={styles.links} key={index}>
-								{link}
-							</div>
-						))}
-					</div>
 					<div className={styles.copy_right}>
 						<CopyrightIcon />
 						<span>2022 Nigma</span>

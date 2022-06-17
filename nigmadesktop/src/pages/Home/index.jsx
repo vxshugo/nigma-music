@@ -3,8 +3,10 @@ import { CircularProgress } from "@mui/material";
 import axiosInstance from "../../redux/axiosInstance";
 import Playlist from "../../components/Playlist";
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
 
 const Home = () => {
+	const {t} = useTranslation()
 	const [firstPlaylists, setFirstPlaylists] = useState([]);
 	const [secondPlaylists, setSecondPlaylists] = useState([]);
 	const [isFetching, setIsFetching] = useState(false);
@@ -36,11 +38,11 @@ const Home = () => {
 				</div>
 			) : (
 				<div className={styles.container}>
-					<h1>Good afternoon</h1>
+					<h1>{t("mainApp.home.firstText")}</h1>
 					<div className={styles.playlists_container}>
 						<Playlist playlists={firstPlaylists} />
 					</div>
-					<h1>Just the hits</h1>
+					<h1>{t("mainApp.home.secondText")}</h1>
 					<div className={styles.playlists_container}>
 						<Playlist playlists={secondPlaylists} />
 					</div>

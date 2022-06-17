@@ -4,7 +4,7 @@
 		position: relative;
 		display: flex;
 		padding: 5rem;
-		background-color: var(--gradient-gray);
+		background-color: var(--light-green-border);
 
 		.head_gradient {
 			position: absolute;
@@ -12,13 +12,13 @@
 			height: 100%;
 			left: 0;
 			top: 0;
-			background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.4) 100%);
+			background: linear-gradient(transparent 0, rgba(22, 136, 88, 0.48) 100%);
 		}
 
 		img {
 			width: 25rem;
 			height: 25rem;
-			box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+			box-shadow: 0 4px 60px rgb(176, 255, 191);
 		}
 
 		.playlist_info {
@@ -54,10 +54,10 @@
 			display: flex;
 			justify-content: space-between;
 			padding: 0.5rem 0;
-			color: var(--light-white);
+			color: var(--white);
 			font-size: 1.4rem;
 			text-transform: uppercase;
-			border-bottom: 1px solid var(--light-white);
+			border-bottom: 1px solid var(--white);
 			margin-bottom: 1rem;
 
 			.left {

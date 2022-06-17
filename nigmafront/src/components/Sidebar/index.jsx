@@ -10,8 +10,10 @@ import AddIcon from "@mui/icons-material/Add";
 import logo from "../../images/toplogo226.svg";
 import likeImg from "../../images/like.jpg";
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
 
 const Sidebar = () => {
+	const {t} = useTranslation()
 	const { playlists, getPlayListProgress, createPlayListProgress } =
 		useSelector((state) => state.playlists);
 	const { user } = useSelector((state) => state.auth);
@@ -38,7 +40,7 @@ const Sidebar = () => {
 				activeClassName={styles.active_menu}
 			>
 				<HomeIcon />
-				<span>Home</span>
+				<span>{t("mainApp.sideBar.home")}</span>
 			</NavLink>
 			<NavLink
 				to="/search"
@@ -46,7 +48,7 @@ const Sidebar = () => {
 				activeClassName={styles.active_menu}
 			>
 				<SearchIcon />
-				<span>Search</span>
+				<span>{t("mainApp.sideBar.search")}</span>
 			</NavLink>
 			<NavLink
 				to="/collection/playlists"
@@ -54,14 +56,14 @@ const Sidebar = () => {
 				activeClassName={styles.active_menu}
 			>
 				<LibraryMusicIcon />
-				<span>Your Library</span>
+				<span>{t("mainApp.sideBar.library")}</span>
 			</NavLink>
 			<div
 				className={styles.create_playlist_btn}
 				onClick={handleCreatePlayList}
 			>
 				<AddIcon />
-				<span>Create Playlist</span>
+				<span>{t("mainApp.sideBar.createPlaylist")}</span>
 			</div>
 			<NavLink
 				to="/collection/tracks"
@@ -69,7 +71,7 @@ const Sidebar = () => {
 				activeClassName={styles.active_menu}
 			>
 				<img src={likeImg} alt="jfo" />
-				<span>Liked Songs</span>
+				<span>{t("mainApp.sideBar.likeSongs")}</span>
 			</NavLink>
 			<div className={styles.underline}></div>
 			{getPlayListProgress || createPlayListProgress ? (

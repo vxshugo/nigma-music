@@ -71,7 +71,7 @@ const SongTable = ({ songs }) => {
 											</TableCell>
 											<TableCell align="center">{song._id}</TableCell>
 											<TableCell align="center">{song.name}</TableCell>
-											<TableCell align="center">{song.artist}</TableCell>
+											<TableCell align="center">{song.artistName}</TableCell>
 											<TableCell align="center">
 												<Link to={`/songs/${song._id}`}>
 													<IconButton className={styles.edit_btn}>

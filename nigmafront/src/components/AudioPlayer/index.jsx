@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentSong } from "../../redux/audioPlayer";
 import Like from "../Like";
-import { IconButton } from "@mui/material";
+import {colors, IconButton} from "@mui/material";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -65,7 +65,7 @@ const AudioPlayer = () => {
 		? `${(trackProgress / duration) * 100}%`
 		: "0%";
 	const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #000), color-stop(${currentPercentage}, #fff))
   `;
 
 	useEffect(() => {
@@ -132,7 +132,7 @@ const AudioPlayer = () => {
 						onChange={(e) => onScrub(e.target.value)}
 						max={duration ? duration : 0}
 						className={styles.progress}
-						style={{ background: trackStyling }}
+						style={{backgroundColor: 'white'}}
 					/>
 					<audio src={currentSong.song.song} ref={audioRef}></audio>
 					<p>{moment.duration(duration, "second").format("mm:ss", { trim: false })}</p>

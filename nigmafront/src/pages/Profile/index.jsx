@@ -8,6 +8,7 @@ import Select from "../../components/Inputs/Select";
 import Radio from "../../components/Inputs/Radio";
 import Button from "../../components/Button";
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
 
 const months = [
 	{ name: "January", value: "01" },
@@ -27,6 +28,7 @@ const months = [
 const genders = ["male", "female", "non-binary"];
 
 const Profile = () => {
+	const {t} = useTranslation()
 	const [data, setData] = useState({
 		name: "",
 		month: "",
@@ -75,11 +77,11 @@ const Profile = () => {
 
 	return (
 		<div className={styles.container}>
-			<h1>Profile</h1>
+			<h1>{t("mainApp.profile.title")}</h1>
 			<form onSubmit={handleSubmit} className={styles.form_container}>
 				<div className={styles.input_container}>
 					<TextField
-						label="What's your email?"
+						label={t("mainApp.profile.email")}
 						placeholder="Enter your email"
 						value={user ? user.email : ""}
 						required={true}
@@ -89,7 +91,7 @@ const Profile = () => {
 				</div>
 				<div className={styles.input_container}>
 					<TextField
-						label="What should we call you?"
+						label={t("mainApp.profile.name")}
 						placeholder="Enter a profile name"
 						name="name"
 						handleInputState={handleInputState}
@@ -101,7 +103,7 @@ const Profile = () => {
 					/>
 				</div>
 				<div className={styles.date_of_birth_container}>
-					<p>What's your date of birth?</p>
+					<p>{t("mainApp.profile.birth")}</p>
 					<div className={styles.date_of_birth}>
 						<div className={styles.month}>
 							<Select
@@ -138,7 +140,7 @@ const Profile = () => {
 				</div>
 				<div className={styles.input_container}>
 					<Radio
-						label="What's your gender?"
+						label={t("mainApp.profile.gender")}
 						name="gender"
 						handleInputState={handleInputState}
 						options={genders}

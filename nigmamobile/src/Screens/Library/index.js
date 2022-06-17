@@ -109,7 +109,7 @@ const Library = ({navigation}) => {
                 </View>
             </Navbar>
             <ConSearch>
-                <SearchSection>
+                <SearchSection onPress={() => navigation.navigate("Search")}>
                     <McImage
                         source={Images.find}
                         style={{ marginLeft: 16, marginRight: 12 }}
@@ -118,6 +118,7 @@ const Library = ({navigation}) => {
                     <TextInput
                         placeholder="Song or Artist"
                         placeholderTextColor={Colors.grey3}
+                        style={{color: "#fff"}}
                     >
                     </TextInput>
                 </SearchSection>
@@ -147,7 +148,7 @@ const Library = ({navigation}) => {
                     Favorite
                 </McText>
                 <TouchableWithoutFeedback onPress={() => {
-                    logout()
+                    navigation.navigate("Favorite")
                 }}>
                     <McImage source={Images.right}/>
                 </TouchableWithoutFeedback>
@@ -177,7 +178,7 @@ const Container = styled.SafeAreaView`
 const ConSearch = styled.View`
     margin: 5px 24px;
 `
-const SearchSection = styled.View`
+const SearchSection = styled.TouchableOpacity`
   width: 100%;
   height: 52px;
   border-radius: 30px;

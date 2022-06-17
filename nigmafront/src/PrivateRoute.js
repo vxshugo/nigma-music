@@ -6,7 +6,7 @@ const PrivateRoute = ({ component: Component, user, ...rest }) => {
 
 	const styles = {
 		padding: currentSong ? "6rem 0 10rem 26rem" : "6rem 0 0 26rem",
-		backgroundColor: "#181818",
+		backgroundColor: "#21725e",
 		color: "#ffffff",
 		minHeight: "calc(100vh - 6rem)",
 	};

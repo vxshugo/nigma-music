@@ -12,6 +12,7 @@ router.post("/", admin , async (req, res) => {
 	const { error } = validate(req.body);
 	if (error) res.status(400).send({ message: error.details[0].message });
 	const song = await Song(req.body).save();
+
 	res.status(201).send({ data: song, message: "Song created successfully" });
 });
 

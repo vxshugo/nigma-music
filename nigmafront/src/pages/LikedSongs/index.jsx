@@ -49,6 +49,9 @@ const LikedSongs = () => {
 					<div className={styles.center}>
 						<p>Artist</p>
 					</div>
+					<div className={styles.center}>
+						<p>Type</p>
+					</div>
 					<div className={styles.subright}>
 						<p>Listens</p>
 					</div>

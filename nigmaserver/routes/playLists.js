@@ -95,7 +95,8 @@ router.get("/favourite", auth, async (req, res) => {
 });
 
 // get random playlists
-router.get("/random", auth, async (req, res) => {
+// fix auth
+router.get("/random", auth,async (req, res) => {
 	const playlists = await PlayList.aggregate([{ $sample: { size: 10 } }]);
 	res.status(200).send({ data: playlists });
 });

@@ -14,6 +14,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
 
 const Navbar = () => {
 	const [menu, setMenu] = useState(false);
@@ -21,6 +22,7 @@ const Navbar = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
+	const {t} = useTranslation()
 	const handleLogout = () => {
 		dispatch(logout());
 		dispatch(setCurrentSong(null));
@@ -54,16 +56,18 @@ const Navbar = () => {
 					<div className={styles.menu} onClick={() => setMenu(false)}>
 						<Link to="/me">
 							<div className={styles.options}>
-								<p>Profile</p>
+								<p>{t("mainApp.navbar.profile")}</p>
 								<PersonIcon />
 							</div>
 						</Link>
-						<div className={styles.options}>
-							<p>Settings</p>
-							<SettingsIcon />
-						</div>
+						<Link to="/setting">
+							<div className={styles.options}>
+								<p>{t("mainApp.navbar.setting")}</p>
+								<SettingsIcon />
+							</div>
+						</Link>
 						<div className={styles.options} onClick={handleLogout}>
-							<p>Logout</p>
+							<p>{t("mainApp.navbar.Logout")}</p>
 							<LogoutIcon />
 						</div>
 					</div>

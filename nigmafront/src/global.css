@@ -3,6 +3,10 @@
 body {
 	margin: 0;
 	font-family: "Roboto", sans-serif;
+	crollbar-width: none;
+}
+::-webkit-scrollbar {
+	display: none;
 }
 
 html {
@@ -33,6 +37,14 @@ code {
 	--light-pink: #ffcdd2;
 	--mini-black: #181818;
 	--gradient-gray: #535353;
+	--green-presses: #164c3f;
+	--green-hover: #1b5f4e;
+	--light-green-fosus: #c8ebe2;
+	--light-green-border: #b5d0c9;
+	--light-green-color: #e7faf5;
+	--green-main: #21725e;
+
+
 
 	--error: #cc0000;
 	--toastify-toast-min-height: 5rem;

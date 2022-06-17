@@ -42,9 +42,11 @@ const Playlist = () => {
   return(
       <Container>
           <Wrapper>
-              <McText medium size={20} color={Colors.grey4}>
-                  {playlist.name}
-              </McText>
+              <View style={{marginLeft: 10, marginTop: 20, marginBottom: 20}}>
+                  <McText medium size={24} color={Colors.grey5}>
+                      {playlist.name}
+                  </McText>
+              </View>
               <View>
                   <ScrollView
                       contentContainerStyle={{}}

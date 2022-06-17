@@ -1,0 +1,75 @@
+{
+    "mainPage": {
+        "navLinks": {
+            "part1": "Premium",
+            "part2": "Support",
+            "part3": "Download",
+            "part4": "Sign up",
+            "part5": "Log in"
+        },
+        "mainText": {
+            "firstText": "Listening is everything",
+            "secondText": "Millions of songs and podcasts. No credit card needed."
+        }
+    },
+    "mainApp" : {
+        "setting": {
+            "title": "Change Language"
+        },
+        "login": {
+            "email": "Enter your email",
+            "password": "Password",
+            "help": "Forgot your password?",
+            "remember": "Remember me",
+            "login": "LOG IN",
+            "dontHave": "Don't have an account?",
+            "singUp": "sign up for nigma music"
+        },
+        "search": {
+            "title": "Search for songs & artists and playlists"
+        },
+        "library": {
+            "title": "Playlists",
+            "likedSong": "Liked Songs"
+        },
+        "register": {
+            "title": "Sign up for free to start listening.",
+            "title2": "Sign up with your email address",
+            "email": "What's your email?",
+            "password": "Create a password",
+            "name": "What should we call you?",
+            "birth": "What's your date of birth?",
+            "gender": "What's your gender?",
+            "share": "Share my registration data with Nigma's content providers for marketing purposes.",
+            "singup": "Sign Up",
+            "have": "Have an account? ",
+            "login": " Log in."
+        },
+        "help": {
+            "text": "If you have a problem write here:"
+        },
+        "home": {
+            "firstText": "Good afternoon",
+            "secondText": "Just the hits"
+        },
+        "sideBar": {
+            "home": "Home",
+            "search": "Search",
+            "library": "Your Library",
+            "createPlaylist": "Create Playlist",
+            "likeSongs": "Liked Songs"
+        },
+        "navbar": {
+            "profile": "Profile",
+            "setting": "Settings",
+            "Logout": "Logout"
+        },
+        "profile": {
+            "title": "Профиль",
+            "email": "What's your email?",
+            "name": "What should we call you?",
+            "birth": "What's your date of birth?",
+            "gender": "What's your gender?"
+        }
+    }
+}

@@ -9,5 +9,7 @@ import Login from "./Login";
 import Subscribe from "./Subscribe";
 import Music from "./Music";
 import Playlist from "./Playlist";
+import Search from "./Search";
+import Favorite from "./Favorite";
 
-export { Home, Profile, OnBoarding, Library, Player, Login, Register,LastStep, Subscribe, Music,Playlist}
+export { Home, Profile, OnBoarding, Library, Player, Login, Register,LastStep, Subscribe, Music,Playlist,Search,Favorite}

@@ -4,6 +4,7 @@ import { addSongToPlaylist } from "../../redux/playListSlice/apiCalls";
 import { ClickAwayListener } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import styles from "./styles.module.scss";
+import {Link} from "react-router-dom";
 
 const PlaylistMenu = ({ playlist, song, handleRemoveSong, closeMenu }) => {
 	const { playlists } = useSelector((state) => state.playlists);
@@ -42,9 +43,11 @@ const PlaylistMenu = ({ playlist, song, handleRemoveSong, closeMenu }) => {
 						</p>
 					</div>
 				)}
-				<div className={styles.option}>
-					<p>Go to artist</p>
-				</div>
+				<Link to={`/artist/${song.artist}`}>
+					<div className={styles.option}>
+						<p>Go to artist</p>
+					</div>
+				</Link>
 				<div className={styles.option}>
 					<p>Share</p>
 				</div>

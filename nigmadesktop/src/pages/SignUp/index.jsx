@@ -11,6 +11,7 @@ import Checkbox from "../../components/Inputs/Checkbox";
 import Button from "../../components/Button";
 import logo from "../../images/black.svg";
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
 
 const months = [
 	{ name: "January", value: "01" },
@@ -30,6 +31,7 @@ const months = [
 const genders = ["male", "female", "non-binary"];
 
 const SignUp = () => {
+	const {t} = useTranslation()
 	const [data, setData] = useState({
 		email: "",
 		password: "",
@@ -93,12 +95,12 @@ const SignUp = () => {
 			<div className={styles.logo}>
 				<img src={logo} alt="logo" />
 			</div>
-			<h1 className={styles.heading}>Sign up for free to start listening.</h1>
+			<h1 className={styles.heading}>{t("mainApp.register.title")}</h1>
 			<form onSubmit={handleSubmit} className={styles.form_container}>
-				<h2 className={styles.form_heading}>Sign up with your email address</h2>
+				<h2 className={styles.form_heading}>{t("mainApp.register.title2")}</h2>
 				<div className={styles.input_container}>
 					<TextField
-						label="What's your email?"
+						label={t("mainApp.register.email")}
 						placeholder="Enter your email"
 						name="email"
 						handleInputState={handleInputState}
@@ -111,7 +113,7 @@ const SignUp = () => {
 				</div>
 				<div className={styles.input_container}>
 					<TextField
-						label="Create a password"
+						label={t("mainApp.register.password")}
 						placeholder="Create a password"
 						name="password"
 						handleInputState={handleInputState}
@@ -125,7 +127,7 @@ const SignUp = () => {
 				</div>
 				<div className={styles.input_container}>
 					<TextField
-						label="What should we call you?"
+						label={t("mainApp.register.name")}
 						placeholder="Enter a profile name"
 						name="name"
 						handleInputState={handleInputState}
@@ -137,7 +139,7 @@ const SignUp = () => {
 					/>
 				</div>
 				<div className={styles.date_of_birth_container}>
-					<p>What's your date of birth?</p>
+					<p>{t("mainApp.register.birth")}</p>
 					<div className={styles.date_of_birth}>
 						<div className={styles.month}>
 							<Select
@@ -174,7 +176,7 @@ const SignUp = () => {
 				</div>
 				<div className={styles.input_container}>
 					<Radio
-						label="What's your gender?"
+						label={t("mainApp.register.gender")}
 						name="gender"
 						handleInputState={handleInputState}
 						options={genders}
@@ -184,23 +186,26 @@ const SignUp = () => {
 				<div className={styles.checkbox_container}>
 					<Checkbox
 						required={true}
-						label="Share my registration data with Spotify's content providers for marketing purposes."
+						label={t("mainApp.register.share")}
 					/>
 				</div>
-				<p className={styles.terms_condition}>
-					By clicking on sign-up, you agree to Spotify's{" "}
-					<a href="/#">Terms and Conditions of Use.</a>
-				</p>
-				<p className={styles.terms_condition}>
-					To learn more about how Spotify collects, uses, shares and protects
-					your personal data, please see{" "}
-					<a href="/#">Spotify's Privacy Policy.</a>
-				</p>
+				{/*<p className={styles.terms_condition}>*/}
+				{/*	By clicking on sign-up, you agree to Nigma{" "}*/}
+				{/*	<a href="/#">Terms and Conditions of Use.</a>*/}
+				{/*</p>*/}
+				{/*<p className={styles.terms_condition}>*/}
+				{/*	To learn more about how Spotify collects, uses, shares and protects*/}
+				{/*	your personal data, please see{" "}*/}
+				{/*	<a href="/#">Spotify's Privacy Policy.</a>*/}
+				{/*</p>*/}
 				<div className={styles.submit_btn_wrapper}>
-					<Button label="Sign Up" type="submit" isFetching={isFetching} />
+					<Button label={t("mainApp.register.singup")} type="submit" isFetching={isFetching} />
 				</div>
 				<p className={styles.terms_condition} style={{ fontSize: "1.6rem" }}>
-					Have an account? <Link to="/login"> Log in.</Link>
+					{t("mainApp.register.have")}
+					<Link to="/login">
+						{t("mainApp.register.login")}
+					</Link>
 				</p>
 			</form>
 		</div>

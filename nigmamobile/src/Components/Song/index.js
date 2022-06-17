@@ -5,6 +5,7 @@ import {McImage, McText} from "../index";
 import {Colors, Images} from "../../Constants";
 import axiosInstance from "../../Context/base";
 import {AuthContext} from "../../Context/Authcontext";
+import Like from "../Like";
 const Song = ({song}) => {
      const [artist, setArtist] = useState({})
     const {setCurrentTrack} = useContext(AuthContext)
@@ -48,7 +49,7 @@ const Song = ({song}) => {
                   </McText>
               </View>
           </View>
-          <McImage source={Images.like}/>
+          <Like songId={song._id}/>
        </Container>
     )
 }

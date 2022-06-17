@@ -10,7 +10,7 @@ const Playlist = ({ playlists }) => {
 					<div className={styles.playlist}>
 						{playlist.img === "" ? (
 							<img
-								src="https://static.thenounproject.com/png/17849-200.png"
+								src="https://cdn.discordapp.com/attachments/771761528739069962/981559607912726568/silniy.png"
 								alt={playlist.name}
 								style={{ background: "#919496" }}
 							/>

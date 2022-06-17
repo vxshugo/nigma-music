@@ -106,7 +106,11 @@ export const AuthProvider = ({children }) => {
       setIsLoading(true)
       try {
           await AsyncStorage.removeItem('userInfo')
+          await AsyncStorage.removeItem('@currentTrack')
+          await AsyncStorage.removeItem('@userToken')
           setUserInfo({});
+          setCurrentSong(null)
+          setToken("")
           setIsLoading(false)
       }catch (e) {
           console.log(e)

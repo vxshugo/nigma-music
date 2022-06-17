@@ -1,15 +1,15 @@
 .playlist {
-	width: 16rem;
+	width: 20rem;
 	padding: 2rem;
-	height: 26rem;
-	background-color: var(--mini-black);
+	height: 28rem;
+	background-color: var(--green-main);
 	border-radius: 1rem;
 	margin: 1rem;
 	cursor: pointer;
 
 	img {
-		width: 16rem;
-		height: 20rem;
+		width: 20rem;
+		height: 22rem;
 		object-fit: cover;
 	}
 
@@ -30,6 +30,6 @@
 	}
 
 	&:hover {
-		background-color: var(--light-black);
+		background-color: var(--green-hover);
 	}
 }

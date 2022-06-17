@@ -4,7 +4,7 @@
 	left: 0;
 	width: 24rem;
 	height: 100vh;
-	background: var(--black);
+	background: var(--green-presses);
 	display: flex;
 	flex-direction: column;
 	padding: 0 1rem;
@@ -97,7 +97,7 @@
 
 	.active_menu {
 		color: var(--white);
-		background-color: var(--light-black);
+		background-color: var(--green-hover);
 	}
 
 	.active_link {

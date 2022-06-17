@@ -5,13 +5,13 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const songSchema = new mongoose.Schema({
 	name: { type: String, required: true },
-	artistId: {  type: String, required: true },
+	artist: {  type: String, required: true },
 	text: {type: String, required: true},
 	song: { type: String, required: true },
 	img: { type: String, required: true },
 	duration: { type: String, required: true },
 	artistName: {type: String, required:true},
-	genre: {type: String, required:true},
+	type: {type: String, required:true},
 	listens: {type: Number, min: 0, default: 0}
 });
 
@@ -22,6 +22,8 @@ const validate = (song) => {
 		text: Joi.string().required(),
 		song: Joi.string().required(),
 		img: Joi.string().required(),
+		artistName: Joi.string().required(),
+		type: Joi.string().required(),
 		duration: Joi.number().required(),
 	});
 	return schema.validate(song);

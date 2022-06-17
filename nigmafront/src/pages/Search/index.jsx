@@ -6,11 +6,15 @@ import { IconButton, CircularProgress } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const Search = () => {
 	const [search, setSearch] = useState("");
 	const [results, setResults] = useState({});
 	const [isFetching, setIsFetching] = useState(false);
+
+	const {t} = useTranslation()
 
 	const handleSearch = async ({ currentTarget: input }) => {
 		setSearch(input.value);
@@ -35,7 +39,7 @@ const Search = () => {
 				</IconButton>
 				<input
 					type="text"
-					placeholder="Search for songs and playlists"
+					placeholder={t("mainApp.search.title")}
 					onChange={handleSearch}
 					value={search}
 				/>
@@ -55,6 +59,22 @@ const Search = () => {
 							{results.songs.map((song) => (
 								<Fragment key={song._id}>
 									<Song song={song} />
+								</Fragment>
+							))}
+						</div>
+					)}
+					{results.artists.length !== 0 && (
+						<div className={styles.artist_container}>
+							{results.artists.map((artist) => (
+								<Fragment key={artist._id}>
+									<div className={styles.artist_block}>
+										<Link to={`/artist/${artist._id}`}>
+											<div className={styles.artist_info}>
+												<img src={artist.img} alt=""/>
+												<h2>{artist.name}</h2>
+											</div>
+										</Link>
+									</div>
 								</Fragment>
 							))}
 						</div>
